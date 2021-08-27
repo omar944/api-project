@@ -38,7 +38,7 @@ class CourseViewSet(viewsets.ModelViewSet):
                 user_tags.add(tag.name)
 
         data = Course.objects.all()
-        scourses_scores = dict()
+        courses_scores = dict()
         for i in data:
             current_tags = set()
             for tag in i.tags.all():
