@@ -1,0 +1,14 @@
+/db.sqlite3
+/static
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+#PyCharm
+.idea/
+.vscode/
+media/
+api_project/.env
+api_project/whoosh_index
