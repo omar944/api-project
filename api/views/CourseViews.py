@@ -46,7 +46,7 @@ class CourseViewSet(viewsets.ModelViewSet):
             idx = self.jaccard_similarity(user_tags, current_tags)
             courses_scores[i.id] = idx
             if i.id in viewed_ids:
-                courses_scores[i.id] = max(courses_scores[i.id] - 0.15, 0)
+                courses_scores[i.id] = max(courses_scores[i.id] - 0.40, 0)
 
         serializer = self.get_serializer(data, many=True)
         result = list()
