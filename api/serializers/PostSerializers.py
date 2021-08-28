@@ -47,16 +47,21 @@ class PostWriteSerializer(serializers.ModelSerializer):
 
 class CommentSerializer(serializers.ModelSerializer):
     author_name = serializers.ReadOnlyField(source='author.name', required=False)
+    profile_photo = serializers.SerializerMethodField()
 
     class Meta:
         model = Comment
-        fields = ('id', 'author', 'post_id', 'text', 'author_name')
+        fields = ('id', 'author', 'post_id', 'text', 'author_name', 'profile_photo')
 
     def to_representation(self, instance):
         timestamp = instance.posted_at.timestamp()
         result = super().to_representation(instance)
         result['posted_at'] = float(timestamp)
         return result
+
+    def get_profile_photo(self, obj):
+        request = self.context.get("request")
+        return request.build_absolute_uri(obj.author.profile_photo.url) if obj.author.profile_photo else None
 
 
 # noinspection PyAbstractClass,PyMethodMayBeStatic
