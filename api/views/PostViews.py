@@ -23,10 +23,7 @@ class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.none()
 
     def get_queryset(self):
-        return Post.objects.all()
-        # if self.action in ["create", "update", "partial_update", "destroy"]:
-        #     return Post.objects.all()
-        # return Post.post_comments_likes.all()
+        return Post.objects.order_by('-posted_at').all()
 
     def get_serializer_class(self):
         if self.action in ["create", "update", "partial_update", "destroy"]:
