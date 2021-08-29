@@ -19,8 +19,8 @@ class CourseViewSet(viewsets.ModelViewSet):
 
     # noinspection PyMethodMayBeStatic
     def jaccard_similarity(self, s1, s2):
-        intersection = len(s1.intersection(s2))
-        union = (len(s1) + len(s2) - intersection)
+        intersection = len(list(s1.intersection(s2)))
+        union = (len(list(s1)) + len(list(s2)) - intersection)
         if int(union) == 0:
             return 0
         return float(intersection) / union
